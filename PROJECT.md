@@ -147,13 +147,13 @@ FastTree all_S_proteins_aligned.fasta > S_proteins_aligned.tree
 
 **RESULTS:**
 Trimming performed:
-*[ссылка](https://drive.google.com/file/d/1e7lG9g4twnREYO8nXEShPGszEyXnsLCR/view?usp=sharing)*
+*[link](https://drive.google.com/file/d/1e7lG9g4twnREYO8nXEShPGszEyXnsLCR/view?usp=sharing)*
 
 Obtaining coordinates of the S-gene from the annotation:
-*[ссылка](https://drive.google.com/file/d/1Emeike-Y3-FfoEX2W16cWKUAF-8Gat2S/view?usp=sharing)*
+*[link](https://drive.google.com/file/d/1Emeike-Y3-FfoEX2W16cWKUAF-8Gat2S/view?usp=sharing)*
 
 Based on the analysis from the Pangolin website, the following strain data were obtained:
-*[ссылка](https://drive.google.com/file/d/1dpG9EZ1bDP4R569iMsQSoTMkoiND_vWX/view?usp=sharing)*
+*[link](https://drive.google.com/file/d/1dpG9EZ1bDP4R569iMsQSoTMkoiND_vWX/view?usp=sharing)*
 sample 1 — B.1.1.529  — Omicron
 sample 2 — BA.1—Omicron
 sample 3 — BA.1 —Omicron
@@ -166,7 +166,7 @@ sample 9 — B.1
 sample 10 — B.
 
 Phylogenetic tree:
-*[ссылка](https://drive.google.com/file/d/1a3k0itY1DWAhFIU5TbcecHD1rl-NSDXZ/view?usp=sharing)*
+*[link](https://drive.google.com/file/d/1a3k0itY1DWAhFIU5TbcecHD1rl-NSDXZ/view?usp=sharing)*
 
 Presence of contamination: 
 Using the command kraken2 and subsequent analysis of the report on the Pavian website:
