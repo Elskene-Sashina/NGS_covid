@@ -1,15 +1,21 @@
 **TASK:**
+
 Blood samples from patients with SARS-CoV-2 have been received for analysis, paired samples (sample_1_1, sample_1_2 - sample_10_2). The goal is to determine the genome sequence by incorporating the detected variations into the reference genome Wuhan-Hu-1, evaluate the coverage of the S protein gene, determine the strain via the Pangolin server, and construct a phylogenetic tree.
 
+---
 
 **COMMANDS:**
+
 Read quality qontrol:
 ```Shell
 fasqc sample*_*.fastq -o /1st_fastq/
 ```
 1.40% N content in short (up to 35 bp) reads
+
 2.By the end, all reads contain G
+
 3.Overall low quality, especially for short reads + very high number of short reads
+
 4.Contamination is present
 
 Trimming:
@@ -57,15 +63,25 @@ Coverage assessment - creating .bed for the S-gene region from .gtf annotation:
 for i in {1..10}; do bedtools coverage -a ~/project/sorted/gene_S.bed -b ~/project/sorted/2/sample_${i}_sorted.bam >> coverage_gene_S.txt; done
 ```
 The resulting file coverage_gene_S.txt contains the following columns:
+
 1 – Chromosome
+
 2 – Start
+
 3 – End
+
 4 – Region name (gene, stop, start codon, CDS)
+
 5 – Score ('.' if not available)
+
 6 – Strand
+
 7 – Number of reads covering the region
+
 8 – Region length
+
 9 – Number of bases covered in the region
+
 10 – Coverage fraction (from 0 to 1)
 
 Where column 7 is the number of reads covering the region. Sum them using:
@@ -111,18 +127,31 @@ for i in {1..10}; do blastp -query ~/project/sorted/2/consensus/S_protein_sequen
 ```
 
 The resulting files consist of 12 columns, from which homologs can be selected:
+
 1 – Query sequence ID: the name of the sequence
+
 2 – Subject sequence ID: the name of the sequence from the database
+
 3 – Percentage identity – should be over 95%
+
 4 – Alignment length: the number of amino acids in the alignment – should be roughly that of the S protein (over 1000 AA)
+
 5 – Number of mismatched amino acids
+
 6 – Number of gap openings: insertions or deletions
+
 7 – Start position (query)
+
 8 – End position (query)
+
 9 – Start position (subject)
+
 10 – End position (subject)
+
 11 – E-value
+
 12 – Bit score – a measure of alignment quality
+
 
 Count the number of homologs with high percentage identity:
 ```Shell
@@ -142,10 +171,12 @@ alv –only-variable all_S_proteins_aligned.fasta
 Phylogenetic tree:
 ```Shell
 FastTree all_S_proteins_aligned.fasta > S_proteins_aligned.tree
-```
 
+```
+---
 
 **RESULTS:**
+
 Trimming performed:
 *[link](https://drive.google.com/file/d/1e7lG9g4twnREYO8nXEShPGszEyXnsLCR/view?usp=sharing)*
 
@@ -154,16 +185,27 @@ Obtaining coordinates of the S-gene from the annotation:
 
 Based on the analysis from the Pangolin website, the following strain data were obtained:
 *[link](https://drive.google.com/file/d/1dpG9EZ1bDP4R569iMsQSoTMkoiND_vWX/view?usp=sharing)*
+
 sample 1 — B.1.1.529  — Omicron
+
 sample 2 — BA.1—Omicron
+
 sample 3 — BA.1 —Omicron
+
 sample 4 — B.1.617.2 —Delta
+
 sample 5 — AY.45
+
 sample 6 — AY.45
+
 sample 7 — B.1
+
 sample 8 — B.1.1.372 
+
 sample 9 — B.1
+
 sample 10 — B.
+
 
 Phylogenetic tree:
 *[link](https://drive.google.com/file/d/1a3k0itY1DWAhFIU5TbcecHD1rl-NSDXZ/view?usp=sharing)*
@@ -189,10 +231,17 @@ Generate a file with nucleotide substitutions:
 ```Shell
 awk '{print $1, $2-1, $2}' OFS="\t" variants_in_S.txt > coords.bed
 ```
-MN908947.3      22450   C       T       0000001000
-MN908947.3      22917   T       G       0001000000
-MN908947.3      23012   G       A       0000001000
-MN908947.3      23664   C       T       0000001000
-MN908947.3      23731   C       T       0000000100
-MN908947.3      24745   C       T       0001000000
-MN908947.3      24795   C       T       0000001000
+
+
+| Chromosome  | Position | Ref | Alt | Score      |
+|-------------|----------|-----|-----|------------|
+| MN908947.3  | 22450    | C   | T   | 0000001000 |
+| MN908947.3  | 22917    | T   | G   | 0001000000 |
+| MN908947.3  | 23012    | G   | A   | 0000001000 |
+| MN908947.3  | 23664    | C   | T   | 0000001000 |
+| MN908947.3  | 23731    | C   | T   | 0000000100 |
+| MN908947.3  | 24745    | C   | T   | 0001000000 |
+| MN908947.3  | 24795    | C   | T   | 0000001000 |
+
+
+---
